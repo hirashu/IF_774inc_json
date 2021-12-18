@@ -1,24 +1,68 @@
 swagger: '2.0'
 info:
+  description: "これは774incに関連情報JSONの仕様です。"
   version: 1.0.0
-  title: タイトル
+  title: 774inc Information
 paths:
-  '/user/{id}':
+  '/memberInfo.json':
     get:
       description: 774incのメンバー情報
-      parameters:
-      - name: id
-        in: path
-        description: user id
-        required: true
-        type: number
       responses:
         '200':
           description: 成功
           schema:
             type: object
             properties:
-              id:
-                type: integer
-              username:
-                type: string
+              groupInfoList:
+                type: array
+                items:
+                  $ref: "#/definitions/GroupInfo"
+
+  '/eventGoods.json':
+    get:
+      description: イベントとグッズ情報
+      responses:
+        '200':
+          description: 成功
+          schema:
+            type: object
+            properties:
+              groupInfoList:
+                type: array
+                items:
+                  $ref: "#/definitions/EventGoodsInfo"
+
+definitions:
+  MemberInfo:
+    type: "object"
+    properties:
+      name:
+       type: string
+      channelId:
+        type: string
+      twitterID:
+        type: string
+
+  GroupInfo:
+    type: "object"
+    properties:
+      groupName: 
+        type: string
+      memberInfoList:
+        type: array
+        items:
+          $ref: "#/definitions/MemberInfo"
+  
+  EventGoodsInfo:
+    type: object 
+    properties:
+      eventId:
+        type: string
+      groupName:
+        type: string
+      imageUrl:
+        type: string
+      linkUrl:
+        type: string
+      eventEnt:
+        type: string
