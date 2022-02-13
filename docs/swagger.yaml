@@ -38,9 +38,13 @@ definitions:
     properties:
       name:
        type: string
+      nameKana:
+       type: string
       channelId:
         type: string
-      twitterID:
+      channelURL:
+        type: string
+      twitterURL:
         type: string
 
   GroupInfo:
